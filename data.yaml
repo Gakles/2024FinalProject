@@ -1,6 +1,7 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+#For faster training at home (H is an ssd)
+train: H:/dataset/train/images
+val: H:/dataset/valid/images
+test: H:/dataset/test/images
 
 nc: 1
 names: ['hummingbird']
