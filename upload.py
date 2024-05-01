@@ -17,11 +17,13 @@ def upload_file():
             # Create the directory if it doesn't exist
             if not os.path.exists(destination_folder):
                 os.makedirs(destination_folder)
-            # Move the file to the destination folder
-            shutil.move(file_path, os.path.join(destination_folder, os.path.basename(file_path)))
+            # Copy the file to the destination folder
+            shutil.copy(file_path, os.path.join(destination_folder, os.path.basename(file_path)))
             print("File uploaded successfully!")
             # Run inference.py
-            subprocess.run(["python", "inference.py"])
+
+            chosen_model = chosen_model_var.get()
+            subprocess.run(["python", "inference.py", chosen_model])
             # Clear the contents of the submitted_image folder
             for file in os.listdir(destination_folder):
                 file_path = os.path.join(destination_folder, file)
@@ -30,6 +32,15 @@ def upload_file():
                         os.unlink(file_path)
                 except Exception as e:
                     print(e)
+
+# Function to get list of model names from the directory
+def get_models():
+    model_dir = "runs/detect"
+    models = []
+    for item in os.listdir(model_dir):
+        if os.path.isdir(os.path.join(model_dir, item)) and item != "inference":
+            models.append(item)
+    return models
 
 # Create the main window
 root = tk.Tk()
@@ -42,6 +53,18 @@ root.configure(bg="#c0c0c0")
 # Label with instructions
 label = tk.Label(root, text="Please submit an image of a hummingbird", bg="#c0c0c0")
 label.pack(pady=20)
+
+# Dropdown menu for choosing model
+models = get_models()
+chosen_model_var = tk.StringVar(root)
+chosen_model_var.set(models[0])  # Set default value
+model_menu = tk.OptionMenu(root, chosen_model_var, *models)
+model_menu.config(width=30)  # Adjust the width of the dropdown menu
+model_menu.pack(pady=10)
+
+# Label for the model dropdown
+model_label = tk.Label(root, text="Choose which model to run:", bg="#c0c0c0")
+model_label.pack(pady=5)
 
 # Create a button to upload a file
 upload_button = tk.Button(root, text="Upload File", command=upload_file, bg="#6495ED", fg="white")
