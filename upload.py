@@ -23,7 +23,11 @@ def upload_file():
             # Run inference.py
 
             chosen_model = chosen_model_var.get()
-            subprocess.run(["python", "inference.py", chosen_model])
+            #subprocess.run(["python", "inference.py", chosen_model])
+            command = f"yolo task=detect mode=predict model=runs/detect/{chosen_model}/weights/best.pt source=submitted_image/ show=True imgsz=480 name=inference/outputs conf=0.5"
+            args = command.split()
+            subprocess.run(args)
+
             # Clear the contents of the submitted_image folder
             for file in os.listdir(destination_folder):
                 file_path = os.path.join(destination_folder, file)
