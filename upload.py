@@ -5,6 +5,8 @@ import os
 import subprocess
 from PIL import Image
 
+#Code generated or inspired by ChatGPT 3.5
+
 def upload_file():
     file_path = filedialog.askopenfilename()
     if file_path:
