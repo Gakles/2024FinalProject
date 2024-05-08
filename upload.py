@@ -54,9 +54,9 @@ root.geometry("400x400")
 # Set background color
 root.configure(bg="#c0c0c0")
 
-# Label with instructions
-label = tk.Label(root, text="Please submit an image of a hummingbird", bg="#c0c0c0")
-label.pack(pady=20)
+# Label for model choice
+model_label = tk.Label(root, text="Choose which model to run:", bg="#c0c0c0")
+model_label.pack(pady=5)
 
 # Dropdown menu for choosing model
 models = get_models()
@@ -67,12 +67,12 @@ model_menu.config(width=30)  # Adjust the width of the dropdown menu
 model_menu.pack(pady=10)
 
 # Label for the model dropdown
-model_label = tk.Label(root, text="Choose which model to run:", bg="#c0c0c0")
-model_label.pack(pady=5)
+label = tk.Label(root, text="Please submit an image of a hummingbird", bg="#c0c0c0")
+label.pack(pady=5)
 
 # Create a button to upload a file
 upload_button = tk.Button(root, text="Upload File", command=upload_file, bg="#6495ED", fg="white")
-upload_button.pack(pady=20)
+upload_button.pack(pady=5)
 
 # Run the application
 root.mainloop()

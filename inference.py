@@ -10,4 +10,4 @@ command = f"yolo task=detect mode=predict model=runs/detect/{chosen_model}/weigh
 args = command.split()
 subprocess.run(args)
 
-#yolo task=detect mode=predict model=runs/detect/yolov8n_v8_e300b163/weights/best.pt source=inference_data/ show=True imgsz=480 name=inference/outputs conf=0.5
+#yolo task=detect mode=predict model=runs/detect/yolo8m_e600_b8/weights/best.pt source=inference_data/ show=True imgsz=480 name=inference/outputs conf=0.5

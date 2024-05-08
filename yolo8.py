@@ -6,7 +6,7 @@ def main():
     #model.to('cuda') will specify device per function
     #model.to('cpu')
     # Training.
-    results = model.train(data='data.yaml', imgsz=480, epochs=300, batch=4, name='yolov8n_v8m_e300b4', device=0)
+    results = model.train(data='data.yaml', imgsz=480, epochs=300, batch=4, name='yolov8n_v8m_e300b4', device=0, )
 
 #yolo task=detect mode=predict model=runs/detect/yolov8n_v8_e50/weights/best.pt source=inference_data/ show=True imgsz=480 name=yolov8n_v8_50e_infer480 conf=0.5
 
